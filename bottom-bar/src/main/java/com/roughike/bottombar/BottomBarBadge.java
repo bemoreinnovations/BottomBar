@@ -147,7 +147,7 @@ class BottomBarBadge extends TextView {
         ViewGroup.LayoutParams params = getLayoutParams();
 
         int size = Math.max(getWidth(), getHeight());
-        float xOffset = (float) (iconView.getWidth() / 1.25);
+        float xOffset = (float) (iconView.getWidth() / 1.35);
 
         setX(iconView.getX() + xOffset);
         setTranslationY(10);
