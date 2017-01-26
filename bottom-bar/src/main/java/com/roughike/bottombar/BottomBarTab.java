@@ -10,6 +10,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.annotation.ColorInt;
+import android.support.annotation.Px;
 import android.support.annotation.VisibleForTesting;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorCompat;
@@ -306,6 +307,21 @@ public class BottomBarTab extends LinearLayout {
         }
 
         badge.setCount(count);
+    }
+
+    /**
+     * Set the custom x offset for this Badge (in pixels). This value is used to adjust the badges horizontal
+     * position in the tab.
+     *
+     * @param xOffset
+     */
+    public void setBadgeXoffset(@Px int xOffset) {
+        if (badge == null) {
+            badge = new BottomBarBadge(getContext());
+            badge.attachToTab(this, badgeBackgroundColor);
+        }
+
+        badge.setCustomXoffset(xOffset);
     }
 
     public void removeBadge() {

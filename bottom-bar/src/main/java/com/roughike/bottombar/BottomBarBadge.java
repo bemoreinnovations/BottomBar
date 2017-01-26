@@ -4,8 +4,7 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
+import android.support.annotation.Px;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.AppCompatImageView;
 import android.view.Gravity;
@@ -32,6 +31,7 @@ import android.widget.TextView;
 class BottomBarBadge extends TextView {
     private int count;
     private boolean isVisible = false;
+    @Px private int customXoffset;
 
     BottomBarBadge(Context context) {
         super(context);
@@ -45,6 +45,16 @@ class BottomBarBadge extends TextView {
     void setCount(int count) {
         this.count = count;
         setText(String.valueOf(count));
+    }
+
+    /**
+     * Set the custom x offset for this Badge (in pixels). This value is used to adjust the badges horizontal
+     * position in the tab.
+     *
+     * @param customXoffset
+     */
+    void setCustomXoffset(@Px int customXoffset) {
+        this.customXoffset = customXoffset;
     }
 
     /**
@@ -147,7 +157,7 @@ class BottomBarBadge extends TextView {
         ViewGroup.LayoutParams params = getLayoutParams();
 
         int size = Math.max(getWidth(), getHeight());
-        float xOffset = (float) (iconView.getWidth() / 1.30);
+        float xOffset = (float) (iconView.getWidth() / 1.30) + customXoffset;
 
         setX(iconView.getX() + xOffset);
         setTranslationY(10);
